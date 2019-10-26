@@ -1,0 +1,40 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://localhost:8080/movies"
+           targetNamespace="http://localhost:8080/movies"
+           elementFormDefault="qualified">
+
+    <xs:element name="getMovieRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMovieResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movie" type="tns:movie"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="movie">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="actor" type="xs:string"/>
+            <xs:element name="year_released" type="xs:string"/>
+            <xs:element name="capital" type="xs:string"/>
+            <xs:element name="category" type="tns:category"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="category">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SYFY"/>
+            <xs:enumeration value="HORROR"/>
+            <xs:enumeration value="THRILLER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
