@@ -1,5 +1,7 @@
 package com.example.Cat2SoapClient;
 
+import localhost._8080.movies.GetAllMoviesRequest;
+import localhost._8080.movies.GetAllMoviesResponse;
 import localhost._8080.movies.GetMovieRequest;
 import localhost._8080.movies.GetMovieResponse;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
@@ -18,6 +20,18 @@ public class Client extends WebServiceGatewaySupport {
 
         return response;
 
+    }
+
+
+    public GetAllMoviesResponse getAllMoviesResponse(){
+        GetAllMoviesRequest request = new GetAllMoviesRequest();
+
+        GetAllMoviesResponse response = (GetAllMoviesResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/ws",
+                        request,
+                        new SoapActionCallback("http://localhost:8080/ws"));
+
+        return response;
     }
 
 }
